@@ -2,23 +2,29 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 require('mongoose-currency').loadType(mongoose); // this will load the new currency type into mongoose
 const Currency = mongoose.Types.Currency; // this will get the currency type from mongoose
-const commentSchema = new Schema({
+var commentSchema = new Schema({
     rating: {
         type: Number,
-        min: 1, // this field must be greater than or equal to 1
-        max: 5, // this field must be less than or equal to 5
-        required: true // this field is required
+        min: 1,
+        max: 5,
+        required: true
+
     },
     comment: {
         type: String,
-        required: true // this field is required
+        required: true
+
     },
     author: {
-        type: String,
-        required: true // this field is required
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+
     }
-}, { timestamps: true } // this will automatically add the two fields createdAt and updatedAt
-);
+}, {
+    timestamps: true
+
+});
+
 
 
 const dishSchema = new Schema({
