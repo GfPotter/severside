@@ -34,7 +34,7 @@ dishRouter.route('/')
         res.end('PUT operation not supported on /dishes');
     })
     .delete(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-        Dishes.remove({}).then((resp) => {
+        Dishes.deleteOne().then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.json(resp);
