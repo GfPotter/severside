@@ -12,6 +12,7 @@ var logger = require("morgan");
 const dishRouter = require("./routes/dishRouter");
 const promoRouter = require("./routes/promoRouter");
 const leadersRouter = require("./routes/leaderRouter");
+const commentRouter = require('./routes/commentRouter');
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var app = express();
@@ -57,6 +58,7 @@ app.use("/dishes", dishRouter);
 app.use("/promotions", promoRouter);
 app.use("/leaders", leadersRouter);
 app.use('/favorites', favoriteRouter);
+app.use('/comments', commentRouter);
 //cookie
 // app.use(cookieParser("12345-67890"));
 app.use(auth); // Require auth middleware function
