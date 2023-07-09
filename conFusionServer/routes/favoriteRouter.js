@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
-const Favorites = require('../models/favorite');
+const Favorites = require('../models/favorites');
 const Dishes = require('../models/dishes');
 var authenticate = require('../authenticate');
 const cors = require('./cors');
@@ -14,7 +14,7 @@ favoriteRouter.use(bodyParser.json());
 
 favoriteRouter.route('/')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-    .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+    .get(cors.cors, authenticate.verifyUser, (req, res, next) => {
         Favorites.findOne({ user: req.user._id })
             .populate('user')
             .populate('dishes')

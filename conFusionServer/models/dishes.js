@@ -11,10 +11,6 @@ const dishSchema = new Schema({
         required: true,
         unique: true // this field must be unique
     },
-    description: {
-        type: String,
-        required: true
-    },
     image: {
         type: String,
         required: true
@@ -35,9 +31,11 @@ const dishSchema = new Schema({
     featured: {
         type: Boolean,
         default: false
+    },
+    description: {
+        type: String,
+        required: true
     }
-
-    // this is a sub-document
 
 }, { timestamps: true } // this will automatically add the two fields createdAt and updatedAt
 );

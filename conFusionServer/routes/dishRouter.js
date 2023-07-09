@@ -14,7 +14,7 @@ dishRouter.route('/')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .get(cors.cors, (req, res, next) => {
         Dishes.find(req.query)
-            .populate('comments.author')
+
             .then((dishes) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -50,7 +50,7 @@ dishRouter.route('/:dishId')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .get(cors.cors, (req, res, next) => {
         Dishes.findById(req.params.dishId)
-            .populate('comments.author')
+
             .then((dish) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -87,7 +87,7 @@ dishRouter.route('/:dishId/comments')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .get(cors.cors, (req, res, next) => {
         Dishes.findById(req.params.dishId)
-            .populate('comments.author')
+
             .then((dish) => {
                 if (dish != null) {
                     res.statusCode = 200;
@@ -159,7 +159,7 @@ dishRouter.route('/:dishId/comments/:commentId')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .get(cors.cors, (req, res, next) => {
         Dishes.findById(req.params.dishId)
-            .populate('comments.author')
+
             .then((dish) => {
                 if (dish != null && dish.comments.id(req.params.commentId) != null) {
                     res.statusCode = 200;
