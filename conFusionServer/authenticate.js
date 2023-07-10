@@ -36,21 +36,7 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
                 return done(err, false);
             });
     }));
-exports.verifyUser = (req, res, next) => {
-    passport.authenticate("jwt", { session: false }, (err, user, info) => {
-        if (err) {
-            return next(err);
-        }
-        if (!user) {
-            const error = new Error("You are not authenticated!");
-            error.status = 401;
-            return next(error);
-        }
-        // Store the user's ID as the author
-        req.author = user._id;
-        next();
-    })(req, res, next);
-};
+exports.verifyUser = passport.authenticate('jwt', { session: false });
 
 exports.verifyAdmin = (req, res, next) => {
     passport.authenticate("jwt", { session: false }, (err, user) => {
