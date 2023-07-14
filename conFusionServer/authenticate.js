@@ -116,5 +116,5 @@ exports.facebookPassport = passport.use(
                     return done(err, false);
                 });
         }
-    )
+    ),
 );

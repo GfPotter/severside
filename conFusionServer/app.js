@@ -30,15 +30,15 @@ connect.then(
   }
 );
 
-app.use(
-  session({
-    name: "session-id",
-    secret: "12345-67890-09876-54321",
-    saveUninitialized: false,
-    resave: false,
-    store: new FileStore(),
-  })
-);
+// app.use(
+//   session({
+//     name: "session-id",
+//     secret: "12345-67890-09876-54321",
+//     saveUninitialized: false,
+//     resave: false,
+//     store: new FileStore(),
+//   })
+// );
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 app.use("/dishes", dishRouter);
 app.use("/promotions", promoRouter);
@@ -59,19 +59,19 @@ app.use("/leaders", leadersRouter);
 app.use('/favorites', favoriteRouter);
 //cookie
 // app.use(cookieParser("12345-67890"));
-app.use(auth); // Require auth middleware function
+// app.use(auth); // Require auth middleware function
 
-function auth(req, res, next) {
-  console.log(req.user);
+// function auth(req, res, next) {
+//   console.log(req.user);
 
-  if (!req.user) {
-    var err = new Error("You are not authenticated!");
-    err.status = 403;
-    next(err);
-  } else {
-    next();
-  }
-}
+//   if (!req.user) {
+//     var err = new Error("You are not authenticated!");
+//     err.status = 403;
+//     next(err);
+//   } else {
+//     next();
+//   }
+// }
 
 // function sessionAuth(req, res, next) {
 //   console.log(req.session);
